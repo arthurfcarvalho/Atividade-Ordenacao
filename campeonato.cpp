@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <vector>
-#include <algorithm>
+#include <vector> 
+#include <algorithm> // find
 #include <iomanip>
 
 using namespace std;
@@ -86,7 +86,7 @@ string escolherTime(vector<Time> times, fstream &arquivo){
         time = linha.substr(0, 3);
 
         auto it = find_if(times.begin(), times.end(),
-                          [time](Time &t){
+                          [time](Time &t){ // aqui eu peguei de uma explicação do stackoverflow, nunca tinha ouvido falar sobre isso de predicado
                               return t.nome == time;
                           });
 
@@ -169,7 +169,7 @@ void selectionSort(vector<Time> &vetor){
 
 void tabela(vector<Time> vetor){
 
-    cout << setw(5) << "TIME"
+    cout << setw(5) << "TIME" // deixar bonitinha a tabela
          << setw(5) << "P" <<
          setw(5) << "V" <<
          setw(5) << "E" <<
@@ -284,7 +284,7 @@ int main(){
                 // logica pra ver se o time vem antes ou depois do X
                 if(linha.find(nomeTime) == 0){
 
-                    int gp = stoi(linha.substr(4));
+                    int gp = stoi(linha.substr(4)); //logica que eu podia ter usado na maratona pra fazer mais uma questão =(
                     int gs = stoi(linha.substr(6));
 
                     if(gp == gs) emp++;
@@ -312,9 +312,9 @@ int main(){
         }
         Time aux(nomeTime, vit, der, emp, golsM, golsS);
 
-        times.push_back(aux);
+        times.push_back(aux); // adicionando o time para o vetor, para nas prox garantir que eu nao conte os dados dele dnv
         arquivoAux.close();
-        arquivo.seekp(0);
+        arquivo.seekp(0); // resetando o ponteiro do arquivo pro inicio
 
     }
 
